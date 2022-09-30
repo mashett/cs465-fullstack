@@ -9,7 +9,7 @@ mongoose.set('useUnifiedTopology', true);
 const connect = () => {
     setTimeout(() => mongoose.connect(dbURI, {
         useNewUrlParser: true,
-        useCreateIndex: true
+        useCreateIndex: true,
     }), 1000);
 }
 
@@ -37,18 +37,22 @@ process.once('SIGUSR2', () => {
     process.kill(process.pid, 'SIGUSR2');
   });
 });
+
 // For app termination
 process.on('SIGINT', () => {
   gracefulShutdown('app termination', () => {
     process.exit(0);
   });
 });
+
 // For Heroku app termination
 process.on('SIGTERM', () => {
   gracefulShutdown('Heroku app shutdown', () => {
     process.exit(0);
   });
 });
+
+connect();
 
 // bring in Mongoose schema
 require('./models/travlr');

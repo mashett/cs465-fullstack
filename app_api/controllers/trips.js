@@ -1,4 +1,4 @@
-//const { Model } = require('mongoose');
+const { Model } = require('mongoose');
 const mongoose = require('mongoose');
 const model = mongoose.model('trips');
 
